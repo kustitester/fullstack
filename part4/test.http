@@ -1,0 +1,200 @@
+### Get all blogs
+GET http://localhost:3003/api/blogs
+
+### Create a new blog
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "My First Blog Post",
+  "author": "John Doe",
+  "url": "https://example.com/my-first-blog",
+  "likes": 15
+}
+
+### Create another blog
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Express.js Best Practices",
+  "author": "Jane Smith",
+  "url": "https://example.com/express-best-practices",
+  "likes": 42
+}
+
+### Test unknownEndpoint middleware - This should return 404
+GET http://localhost:3003/api/nonexistent
+
+### Test unknownEndpoint middleware - Another non-existent route
+POST http://localhost:3003/api/random
+
+### Test requestLogger middleware - This will show in console
+PUT http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Test for logging"
+}
+
+### Test errorHandler middleware - This should trigger CastError
+GET http://localhost:3003/api/blogs/invalid
+
+### Test errorHandler middleware - This should work normally
+GET http://localhost:3003/api/blogs/123
+
+### Get all users
+GET http://localhost:3003/api/users
+
+### Create a new user
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "testuser1",
+  "name": "Test User One",
+  "password": "password123"
+}
+
+### Create another user
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "testuser2",
+  "name": "Test User Two",
+  "password": "securepassword456"
+}
+
+### Test user creation with short password (should return 400)
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "shortpass",
+  "name": "Short Password User",
+  "password": "ab"
+}
+
+### Test user creation without password (should return 400)
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "nopass",
+  "name": "No Password User"
+}
+
+### Test duplicate username (should return 400)
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "testuser1",
+  "name": "Duplicate User",
+  "password": "differentpassword"
+}
+
+### Test user creation without username (should return 400)
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "No Username User",
+  "password": "password123"
+}
+
+### Test user creation with short username (should return 400)
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "ab",
+  "name": "Short Username User",
+  "password": "password123"
+}
+
+### Test user creation with both short username and password (should return 400)
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "ab",
+  "name": "Short Both User",
+  "password": "cd"
+}
+
+### Test user creation with missing username and password (should return 400)
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "Missing Both User"
+}
+
+### Login with valid credentials
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "testuser1",
+  "password": "password123"
+}
+
+### Login with invalid password (should return 401)
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "testuser1",
+  "password": "wrongpassword"
+}
+
+### Login with non-existent username (should return 401)
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "nonexistent",
+  "password": "password123"
+}
+
+### Create blog without token (should return 401)
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyMSIsImlkIjoiNjg3ODA5NTVkZDZjOTkyZTM4ZTgxZDJiIiwiaWF0IjoxNzUyNjk4ODY5LCJleHAiOjE3NTI3MDI0Njl9.MYSjzNKpgh7_EKMAsWM3TWuIZircyioRiTYGQgUwnS3
+
+{
+  "title": "Unauthorized Blog",
+  "author": "Unauthorized Author",
+  "url": "http://unauthorized.com",
+  "likes": 5
+}
+
+### Create blog with valid token (replace TOKEN_HERE with actual token from login)
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyMSIsImlkIjoiNjg3OTI5MTI5MTNhNzlhYjRjM2FjM2FmIiwiaWF0IjoxNzUyNzcwOTY0LCJleHAiOjE3NTI3NzQ1NjR9.GdnXIFO3lkM3fxFAfuaty7rDE6fnFierLtunkTI-T4o
+
+{
+  "title": "Authorized Blog",
+  "author": "Authorized Author",
+  "url": "http://authorized.com",
+  "likes": 10
+}
+
+### Update blog with valid token (replace TOKEN_HERE and BLOG_ID with actual values)
+PUT http://localhost:3003/api/blogs/6877fabc6eeb7ce85b138750
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyMSIsImlkIjoiNjg3ODA5NTVkZDZjOTkyZTM4ZTgxZDJiIiwiaWF0IjoxNzUyNjk4ODY5LCJleHAiOjE3NTI3MDI0Njl9.MYSjzNKpgh7_EKMAsWM3TWuIZircyioRiTYGQgUwnSI
+
+{
+  "likes": 15
+}
+
+### Delete blog with valid token (replace TOKEN_HERE and BLOG_ID with actual values)
+DELETE http://localhost:3003/api/blogs/BLOG_ID
+Authorization: Bearer TOKEN_HERE
+
+### Reset database (only works in test mode)
+POST http://localhost:3003/api/testing/reset 

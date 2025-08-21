@@ -1,0 +1,52 @@
+# Page snapshot
+
+```yaml
+- text: a new blog Sort Test Blog 2 webkit by Sort Test Author 2 webkit added
+- heading "blogs" [level=2]
+- paragraph:
+  - text: Test User webkit logged in
+  - button "logout"
+- form:
+  - text: "title:"
+  - textbox "title:": Sort Test Blog 3 webkit
+  - text: "author:"
+  - textbox "author:": Sort Test Author 3 webkit
+  - text: "url:"
+  - textbox "url:": http://sort-test-3-webkit.com
+  - button "create"
+- button "cancel"
+- text: Sort Test Blog 2 webkit Sort Test Author 2 webkit
+- button "view"
+- text: Sort Test Blog 3 webkit Sort Test Author 3 webkit
+- button "view"
+- text: Sort Test Blog 1 webkit Sort Test Author 1 webkit
+- button "view"
+- text: Sort Test Blog 2 chromium Sort Test Author 2 chromium
+- button "view"
+- text: Sort Test Blog 2 firefox Sort Test Author 2 firefox
+- button "view"
+- text: Sort Test Blog 3 chromium Sort Test Author 3 chromium
+- button "view"
+- text: Sort Test Blog 3 firefox Sort Test Author 3 firefox
+- button "view"
+- text: Test Blog chromium Test Author chromium
+- button "view"
+- text: Sort Test Blog 1 chromium Sort Test Author 1 chromium
+- button "view"
+- text: Test Blog firefox Test Author firefox
+- button "view"
+- text: Sort Test Blog 1 firefox Sort Test Author 1 firefox
+- button "view"
+- text: Test Blog webkit Test Author webkit
+- button "view"
+- text: Permission Test Blog chromium Permission Test Author chromium
+- button "view"
+- text: Permission Test Blog firefox Permission Test Author firefox
+- button "view"
+- text: Permission Test Blog webkit Permission Test Author webkit
+- button "view"
+- text: Sort Test Blog 1 webkit Sort Test Author 1 webkit
+- button "view"
+- text: Sort Test Blog 2 webkit Sort Test Author 2 webkit
+- button "view"
+```
